@@ -1,4 +1,6 @@
 # Usage:
+Copies files with specific extensions to an output folder.
+
 Python 3.11.2 recommended.
 
 If you want a venv:  
