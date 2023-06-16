@@ -16,6 +16,9 @@
 		"[dockerfile]": {
 			"editor.defaultFormatter": "ms-azuretools.vscode-docker",
 		},
+		"flake8.args": [
+			"--max-line-length=88",
+		],
 	},
 	"tasks": {
 		"version": "2.0.0",

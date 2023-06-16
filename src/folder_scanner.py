@@ -53,7 +53,10 @@ def get_arguments() -> MySpace:
         help="Folder path to perform file scan on",
     )
     MySpace.extensions = parser.add_argument(
-        "--extensions", nargs="+", default=[".jpg"], help="File extensions to search for."
+        "--extensions",
+        nargs="+",
+        default=[".jpg"],
+        help="File extensions to search for.",
     )
     MySpace.output = parser.add_argument(
         "--output",
@@ -79,7 +82,7 @@ def main():
         destination = args.output / file.name
         index = 0
         while destination.exists():
-            new_file_name = (file.stem + "." + str(index) + file.suffix)
+            new_file_name = file.stem + "." + str(index) + file.suffix
             destination = args.output / new_file_name
             index += 1
         shutil.copyfile(file, destination)
