@@ -1,0 +1,12 @@
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: A linter
+    steps:
+      - name: Lint
+        id: lint
+        uses: lukacat10/Flake8@v1
+        with:
+          path: 'src/*'
