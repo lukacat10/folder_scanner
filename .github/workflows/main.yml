@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Lint
         id: lint
-        uses: lukacat10/Flake8@v3
+        uses: lukacat10/Flake8@v4
         with:
-          path: 'src'
-          extra: '--max-line-length 88'
+          path: "src"
+          max-line-length: "88"
