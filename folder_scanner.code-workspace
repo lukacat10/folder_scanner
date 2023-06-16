@@ -1,0 +1,141 @@
+{
+	"folders": [
+		{
+			"path": ".",
+		},
+	],
+	"settings": {
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.black-formatter",
+		},
+		"python.formatting.provider": "black",
+		"editor.defaultFormatter": "ms-python.black-formatter",
+		"[jsonc]": {
+			"editor.defaultFormatter": "vscode.json-language-features",
+		},
+		"[dockerfile]": {
+			"editor.defaultFormatter": "ms-azuretools.vscode-docker",
+		},
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "Create venv",
+				"command": "rmdir -Recurse venv; python -m venv venv",
+				"type": "shell",
+				"args": [],
+				"problemMatcher": [
+					"$tsc",
+				],
+				"presentation": {
+					"reveal": "always",
+				},
+				"group": "build",
+				"options": {
+					"cwd": "${workspaceFolder}",
+				},
+			},
+			{
+				"label": "Install package (venv)",
+				"command": ".\\venv\\Scripts\\Activate.ps1; pip install -e .",
+				"type": "shell",
+				"args": [],
+				"problemMatcher": [
+					"$tsc",
+				],
+				"presentation": {
+					"reveal": "always",
+				},
+				"group": "build",
+				"options": {
+					"cwd": "${workspaceFolder}",
+				},
+			},
+			{
+				"label": "Install package with dev dependencies (venv)",
+				"command": ".\\venv\\Scripts\\Activate.ps1; pip install -e .[dev]",
+				"type": "shell",
+				"args": [],
+				"problemMatcher": [
+					"$tsc",
+				],
+				"presentation": {
+					"reveal": "always",
+				},
+				"group": "build",
+				"options": {
+					"cwd": "${workspaceFolder}",
+				},
+			},
+			{
+				"label": "Run IPython (venv)",
+				"command": ".\\venv\\Scripts\\Activate.ps1; python.exe -m IPython",
+				"type": "shell",
+				"args": [],
+				"problemMatcher": [
+					"$tsc",
+				],
+				"presentation": {
+					"reveal": "always",
+				},
+				"group": "build",
+				"options": {
+					"cwd": "${workspaceFolder}",
+				},
+			},
+			{
+				"label": "Run entrypoint (venv)",
+				"command": ".\\venv\\Scripts\\Activate.ps1; folder_scanner",
+				"type": "shell",
+				"args": [],
+				"problemMatcher": [
+					"$tsc",
+				],
+				"presentation": {
+					"reveal": "always",
+				},
+				"group": "build",
+				"options": {
+					"cwd": "${workspaceFolder}",
+				},
+			},
+			{
+				"label": "Docker build",
+				"command": "docker build -t folder_scanner_image .",
+				"type": "shell",
+				"args": [],
+				"problemMatcher": [
+					"$tsc",
+				],
+				"presentation": {
+					"reveal": "always",
+				},
+				"group": "build",
+				"options": {
+					"cwd": "${workspaceFolder}",
+				},
+			},
+			{
+				"label": "Docker run",
+				"command": "docker run -it folder_scanner_image",
+				"type": "shell",
+				"args": [],
+				"problemMatcher": [
+					"$tsc",
+				],
+				"presentation": {
+					"reveal": "always",
+				},
+				"group": "build",
+				"options": {
+					"cwd": "${workspaceFolder}",
+				},
+			},
+		],
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [],
+	}
+}
