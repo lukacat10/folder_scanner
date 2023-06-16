@@ -3,7 +3,7 @@ on: [push]
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: A linter
+    name: A flake8 linter
     steps:
       - name: Lint
         id: lint
