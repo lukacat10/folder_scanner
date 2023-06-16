@@ -12,3 +12,4 @@ jobs:
         uses: lukacat10/Flake8@v3
         with:
           path: 'src'
+          extra: '--max-line-length 88'
