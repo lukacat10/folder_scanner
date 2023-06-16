@@ -9,4 +9,4 @@ jobs:
         id: lint
         uses: lukacat10/Flake8@v2
         with:
-          path: 'src/*'
+          path: 'src'
