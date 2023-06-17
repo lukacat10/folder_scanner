@@ -21,7 +21,7 @@ setup(
         "Bug Tracker": "https://github.com/lukacat100/folder-scanner",
     },
     classifiers=[
-        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.11.2",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
