@@ -4,12 +4,13 @@ import argparse
 import logging
 from pathlib import Path
 import shutil
-from typing import List
+from typing import List, Optional
 
 
-class MySpace(Namespace):
+class ArgumentNamespace(Namespace):
     path: Path
     extensions: List[str]
+    names: Optional[List[str]]
     output: Path
 
 
@@ -45,20 +46,26 @@ def parse_path_argument(
     return _inner
 
 
-def get_arguments() -> MySpace:
+def get_arguments() -> ArgumentNamespace:
     parser = argparse.ArgumentParser("Folder scanner tools")
-    MySpace.path = parser.add_argument(
+    ArgumentNamespace.path = parser.add_argument(
         "path",
         type=parse_path_argument(check_existence=True, check_folder=True),
         help="Folder path to perform file scan on",
     )
-    MySpace.extensions = parser.add_argument(
+    ArgumentNamespace.extensions = parser.add_argument(
         "--extensions",
         nargs="+",
         default=[".jpg"],
         help="File extensions to search for.",
     )
-    MySpace.output = parser.add_argument(
+    ArgumentNamespace.names = parser.add_argument(
+        "--names",
+        nargs="+",
+        default=None,
+        help="File names to search for.",
+    )
+    ArgumentNamespace.output = parser.add_argument(
         "--output",
         type=parse_path_argument(
             check_existence=True,
@@ -75,15 +82,18 @@ def main():
     args = get_arguments()
     path = args.path
     extensions = args.extensions
+    output = args.output
+    names = args.names
 
     files = [file for file in path.rglob("*") if file.suffix in extensions]
-    print(files)
+    if names is not None:
+        files = {file for file in files for name in names if name in file.name}
     for file in files:
-        destination = args.output / file.name
+        destination = output / file.name
         index = 0
         while destination.exists():
             new_file_name = file.stem + "." + str(index) + file.suffix
-            destination = args.output / new_file_name
+            destination = output / new_file_name
             index += 1
         shutil.copyfile(file, destination)
     logging.info("Successful file copy.")
