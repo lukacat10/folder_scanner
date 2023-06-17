@@ -26,12 +26,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     install_requires=dependencies,
-    extras_require={
-        'dev': [
-            'pytest',
-            'IPython'
-        ]
-    },
+    extras_require={"dev": ["pytest", "IPython"]},
     entry_points={
         "console_scripts": [
             "folder_scanner = folder_scanner:main",
